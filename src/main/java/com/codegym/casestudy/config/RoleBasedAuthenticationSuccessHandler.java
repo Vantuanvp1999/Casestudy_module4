@@ -55,7 +55,7 @@ public class RoleBasedAuthenticationSuccessHandler implements AuthenticationSucc
         if (isAdmin) {
             return "/admin/product-list"; // Trang quản trị cho Admin
         } else {
-            return "/index"; // Trang chủ cho User
+            return "/"; // Trang chủ cho User
         }
     }
 
