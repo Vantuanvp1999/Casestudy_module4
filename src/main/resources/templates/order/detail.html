@@ -75,7 +75,11 @@
                 </td>
                 <td th:text="${detail.quantity}"></td>
                 <td th:text="${#numbers.formatDecimal(detail.price, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
-                <td class="text-end pe-3" th:text="${#numbers.formatDecimal(detail.price.multiply(T(java.math.BigDecimal).valueOf(detail.quantity)), 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
+                <td class="text-end pe-3" th:text="${#numbers.formatDecimal(
+  detail.price.multiply(T(java.math.BigDecimal).valueOf(detail.quantity.longValue())),
+  0, 'COMMA', 0, 'POINT'
+)
+} + ' VNĐ'"></td>
               </tr>
               </tbody>
             </table>

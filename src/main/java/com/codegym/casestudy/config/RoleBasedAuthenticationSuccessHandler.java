@@ -53,7 +53,7 @@ public class RoleBasedAuthenticationSuccessHandler implements AuthenticationSucc
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
 
         if (isAdmin) {
-            return "/admin/product-list"; // Trang quản trị cho Admin
+            return "/"; // Trang quản trị cho Admin
         } else {
             return "/"; // Trang chủ cho User
         }
