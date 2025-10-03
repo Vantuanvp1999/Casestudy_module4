@@ -19,7 +19,7 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final Path root;
 
-    public ProductService(ProductRepository productRepository, @Value("${upload.path}") String uploadPath) {
+    public ProductService(ProductRepository productRepository, @Value("${file.upload-dir}") String uploadPath) {
         this.productRepository = productRepository;
         this.root = Paths.get(uploadPath);
         try {

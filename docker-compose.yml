@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: casestudy_module4
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app_network
+
+  springboot_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: springboot_app_image
+    container_name: springboot_app_container
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/casestudy_module4
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 123456
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - app_network
+    volumes:
+      - ./uploads:/app/uploads   # dùng folder riêng cho file upload
+
+volumes:
+  mysql_data:
+
+networks:
+  app_network:
